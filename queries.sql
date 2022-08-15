@@ -4,10 +4,10 @@
 --DONEList first name, last name, and hire date for employees who were hired in 1986.
 --DONEList the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
 --DONEList the department of each employee with the following information: employee number, last name, first name, and department name.
---List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
---List all employees in the Sales department, including their employee number, last name, first name, and department name.
---List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
---In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+--DONEList first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
+--DONEList all employees in the Sales department, including their employee number, last name, first name, and department name.
+--DONEList all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
+--DONEIn descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
 
 --show available data in each table, limited to first 10 entires
 SELECT * FROM titles LIMIT (10);
@@ -52,4 +52,31 @@ LIMIT (10);
 SELECT employees.first_name, employees.last_name, employees.sex AS gender
 FROM employees
 WHERE first_name = 'Hercules' AND last_name LIKE 'B%'
+LIMIT (10);
+
+--Sales department employee details: employee number, last name, first name, and department name.
+SELECT employees.emp_no, employees.last_name, employees.first_name, departments.dept_name
+FROM employees
+JOIN dept_employees 
+ON employees.emp_no = dept_employees.emp_no
+JOIN departments 
+ON dept_employees.dept_no = departments.dept_no
+WHERE departments.dept_name = 'Sales'
+LIMIT (10);
+
+--Sales and Development departments employees: employee number, last name, first name, and department name.
+SELECT employees.emp_no, employees.last_name, employees.first_name, departments.dept_name
+FROM employees
+JOIN dept_employees 
+ON employees.emp_no = dept_employees.emp_no
+JOIN departments 
+ON dept_employees.dept_no = departments.dept_no
+WHERE departments.dept_name = 'Sales' OR departments.dept_name = 'Development'
+LIMIT (10);
+
+--Frequency count of employee last names in descending order.
+SELECT employees.last_name, Count (*)
+FROM employees
+GROUP BY employees.last_name
+ORDER BY Count (*) DESC
 LIMIT (10);
