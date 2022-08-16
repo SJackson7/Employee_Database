@@ -50,8 +50,14 @@ I completed a further analysis of the data by importing the SQL database into Pa
 
 
 #### Included Files:
-data folder:
+##### SQL:
+* query.sql
+* schema.sql
+
+##### Jupyter Notebook (for Further Analysis)
+salary_ana.ipynb
+##### data folder:
 * CSV files
 
-images folder:
+##### images folder:
 * All images in this README.md
